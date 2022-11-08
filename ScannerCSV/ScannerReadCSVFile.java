@@ -18,38 +18,30 @@ public class ScannerReadCSVFile
         // Set the delimiter as a new-line character so we can read the
         // data one line at a time
         scanner.useDelimiter("\n");
-
-        // Continue while there's still data in the file to be read
+        int lines = 1;
         while (scanner.hasNext()) {
             // Read the next line of the file
             String line = scanner.nextLine();
-            //System.out.println(line);
+            Scanner scanner1 = new Scanner(line);
+            scanner1.useDelimiter(","); 
+            int sumNum = 0;
+            String classNumber = scanner1.next();
+            if (lines == 1) {
+                System.out.println("Class Avg. Scores");
+            }else{
+                while (scanner1.hasNext()){
+                    //returns true if there is another token 
 
-            // line now contains a line of comma-separated numbers
-            // representing 10 test scores for each class.
-            //
-            // Your job is to parse the numbers into individual test scores using
-            // another Scanner variable using a comma as the delimiter.  
-            // 
-            // Read the ten test scores and average them together.  The first
-            // number is the class number and the next 10 numbers are the 
-            // test scores.  
-            //
-            // You need to compute the average and print for each class the class
-            // number, then the average score.  The first few lines should look
-            // like this:
-            //
-            // Class: Avg score
-            // 2125:  55
-            // 1628:  47
-            //
-            // Pay attention to the spacing on your output
-            //
-            // Write your code in the space below!
-            Scanner scanner1 = new Scanner(line).useDelimiter(",");
-            
-            
-        
+                    int number = scanner1.nextInt();
+                    if (number <= 999) { // adds all up if condition is met
+                        sumNum += number; // adds test scores
+                    }else{
+                        classNumber = scanner1.next(); //returns next token
+                    }
+                }
+                System.out.println(classNumber + ":" + (sumNum/10));
+            }
+            lines++; // continues line and does not stop :d:9:0
         }
     }
 
